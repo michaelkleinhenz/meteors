@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
 public class GameObject extends Actor {
@@ -91,10 +92,10 @@ public class GameObject extends Actor {
      */
 	public GameObject reveal(float delay, float fadeInDuration) {
 		addAction(sequence(
-					alpha(0),
-					delay(delay),
-					fadeIn(fadeInDuration)
-				));
+				alpha(0),
+				delay(delay),
+				fadeIn(fadeInDuration)
+		));
 		return this;
 	}
 
@@ -108,7 +109,7 @@ public class GameObject extends Actor {
 	 */
     public GameObject rotate(float degrees, float animationDuration, Interpolation interpolation) {
     	setOrigin(getWidth()/2, getHeight()/2);
-		addAction(rotateBy(degrees, animationDuration, interpolation));
+		addAction(Actions.rotateBy(degrees, animationDuration, interpolation));
 		return this;
     }
 
@@ -131,7 +132,7 @@ public class GameObject extends Actor {
      * @return true if fixture is this body, false otherwise.
      */
     public boolean isBody(Fixture fixture) {
-    	return (body!=null && body.getFixtureList()!=null && body.getFixtureList().contains(fixture));
+    	return (body!=null && body.getFixtureList()!=null && body.getFixtureList().contains(fixture, false));
     }
 
     /**

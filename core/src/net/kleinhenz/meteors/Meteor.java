@@ -1,10 +1,8 @@
 package net.kleinhenz.meteors;
 
-import aurelienribon.bodyeditor.BodyEditorLoader;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -28,7 +26,7 @@ public class Meteor extends GameObject {
     	fixtureDef.friction = 0.4f;
     	fixtureDef.restitution = 0.6f;
 
-    	BodyEditorLoader bodyShapes = new BodyEditorLoader(Gdx.files.internal("data/shapes.json"));
+    	BodyEditorLoader bodyShapes = new BodyEditorLoader(Gdx.files.internal("shapes.json"));
 		bodyShapes.attachFixture(body, shapeName, fixtureDef, texture.getWidth()*SCALEFACTOR);
     }
     
@@ -40,7 +38,7 @@ public class Meteor extends GameObject {
 		float localY = y * SCALEFACTOR;
 		Vector2 force = new Vector2(forceX, -forceY);
 		Vector2 localPoint = new Vector2(localX, localY);
-		body.applyLinearImpulse(force, body.getWorldPoint(localPoint));
+		body.applyLinearImpulse(force, body.getWorldPoint(localPoint), true);
     }		
 
     @Override
@@ -51,7 +49,7 @@ public class Meteor extends GameObject {
     }
 
 	@Override
-	public void draw(SpriteBatch batch, float parentAlpha) {
+	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 	}	
 }

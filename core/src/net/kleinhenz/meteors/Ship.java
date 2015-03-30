@@ -1,7 +1,5 @@
 package net.kleinhenz.meteors;
 
-import aurelienribon.bodyeditor.BodyEditorLoader;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import net.kleinhenz.meteors.GameObject;
 
 public class Ship extends GameObject {
 
@@ -25,7 +22,7 @@ public class Ship extends GameObject {
 	Array<ParticleEmitter> emitters = null;
 
     public Ship(float x, float y, float width, float height, World world) {
-    	super(x, y, width * SCALEFACTOR_ALL, height * SCALEFACTOR_ALL, new TextureRegion(new Texture(Gdx.files.internal("data/ship.png"))));
+    	super(x, y, width * SCALEFACTOR_ALL, height * SCALEFACTOR_ALL, new TextureRegion(new Texture(Gdx.files.internal("ship.png"))));
     	
     	// First we create a body definition
     	BodyDef bodyDef = new BodyDef();
@@ -41,13 +38,13 @@ public class Ship extends GameObject {
     	fixtureDef.friction = 0.4f;
     	fixtureDef.restitution = 0.6f; // Make it bounce a little bit
     	// Load shapes from file
-    	BodyEditorLoader bodyShapes = new BodyEditorLoader(Gdx.files.internal("data/shapes.json"));
+    	BodyEditorLoader bodyShapes = new BodyEditorLoader(Gdx.files.internal("shapes.json"));
 		bodyShapes.attachFixture(body, "Ship", fixtureDef, SCALEFACTOR);
 		
 		// Particles
 		spriteBatch = new SpriteBatch();
 		effect = new ParticleEffect();
-		effect.load(Gdx.files.internal("data/particle.p"), Gdx.files.internal("data"));
+		effect.load(Gdx.files.internal("particle.p"), Gdx.files.internal(""));
 
 		/*
 		// Use box2d particles
@@ -68,9 +65,9 @@ public class Ship extends GameObject {
 		Vector2 force = new Vector2(forceX, -forceY);
 		Vector2 localPoint = new Vector2(localX, localY);
 		if (impulse) {
-			body.applyLinearImpulse(force, body.getWorldPoint(localPoint));
+			body.applyLinearImpulse(force, body.getWorldPoint(localPoint), true);
 		} else {
-			body.applyForce(force, body.getWorldPoint(localPoint));
+			body.applyForce(force, body.getWorldPoint(localPoint), true);
 		}
 		if (particles) {
 			effect.start();

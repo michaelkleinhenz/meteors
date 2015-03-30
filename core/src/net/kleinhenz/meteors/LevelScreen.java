@@ -89,9 +89,9 @@ public class LevelScreen extends GameScreen {
 		super.show();
 		
         // add background
-        addBackground(new Background("data/starfield.png", 30, 1f, true, null));
-        addBackground(new Background("data/whirl.png", 40, 1f, true, null));
-        addBackground(new Background("data/whirl2.png", 60, 1f, true, new ActorGestureListener() {        	
+        addBackground(new Background("starfield.png", 30, 1f, true, null));
+        addBackground(new Background("whirl.png", 40, 1f, true, null));
+        addBackground(new Background("whirl2.png", 60, 1f, true, new ActorGestureListener() {
 			@Override
 			public void tap(InputEvent event, float x, float y, int count, int button) {
 				ship.boost(0.5f, 1f, FORCE, false, true);
@@ -107,19 +107,19 @@ public class LevelScreen extends GameScreen {
 		getStage().addActor(ship);
 		ship.reveal(0f, 1f);
 
-		Meteor meteor1 = new Meteor(200, 200, new Texture(Gdx.files.internal("data/meteor1.png")), "Meteor1", world);
+		Meteor meteor1 = new Meteor(200, 200, new Texture(Gdx.files.internal("meteor1.png")), "Meteor1", world);
 		getStage().addActor(meteor1);
 		meteor1.reveal(0f, 1f);
 		meteor1.boost(0, 0, 100000);
 		meteors.add(meteor1);
 
-		Meteor meteor2 = new Meteor(WIDTH - 200, HEIGHT - 200, new Texture(Gdx.files.internal("data/meteor2.png")), "Meteor2", world);
+		Meteor meteor2 = new Meteor(WIDTH - 200, HEIGHT - 200, new Texture(Gdx.files.internal("meteor2.png")), "Meteor2", world);
 		getStage().addActor(meteor2);
 		meteor2.reveal(0f, 1f);
 		meteor2.boost(0, 0, 100000);
 		meteors.add(meteor2);
 
-		Meteor meteor3 = new Meteor(0, HEIGHT - 200, new Texture(Gdx.files.internal("data/meteor3.png")), "Meteor3", world);
+		Meteor meteor3 = new Meteor(0, HEIGHT - 200, new Texture(Gdx.files.internal("meteor3.png")), "Meteor3", world);
 		getStage().addActor(meteor3);
 		meteor3.reveal(0f, 1f);
 		meteor3.boost(0, 0, 100000);
@@ -127,7 +127,7 @@ public class LevelScreen extends GameScreen {
 				
 		// add HUD
 		for (int i=0; i<5; i++) {
-			HUDElement life = new HUDElement(50+i*50, 50, new Texture(Gdx.files.internal("data/heart.png")));
+			HUDElement life = new HUDElement(50+i*50, 50, new Texture(Gdx.files.internal("heart.png")));
 			lifes.add(life);
 			getStage().addActor(life);			
 		}

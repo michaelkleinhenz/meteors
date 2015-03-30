@@ -31,6 +31,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 
 /**
@@ -61,7 +62,7 @@ public class Background extends Actor {
 	    	setSize(diagonal, diagonal);
 	    	setPosition((LevelScreen.WIDTH-diagonal)/2, (LevelScreen.WIDTH-diagonal)/2);
 	    	setOrigin(getWidth()/2, getHeight()/2);
-			addAction(forever(rotateBy(90f, duration)));
+			addAction(forever(Actions.rotateBy(90f, duration)));
 		} else {
 			// just display
 			if (scaleToFit) {
