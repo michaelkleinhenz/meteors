@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.graphics.ParticleEmitterBox2D;
 import com.badlogic.gdx.utils.Array;
 
 public class Ship extends GameObject {
@@ -19,14 +20,13 @@ public class Ship extends GameObject {
 	
 	ParticleEffect effect = null;
 	SpriteBatch spriteBatch = null;
-	Array<ParticleEmitter> emitters = null;
 
     public Ship(float x, float y, float width, float height, World world) {
     	super(x, y, width * SCALEFACTOR_ALL, height * SCALEFACTOR_ALL, new TextureRegion(new Texture(Gdx.files.internal("ship.png"))));
     	
     	// First we create a body definition
     	BodyDef bodyDef = new BodyDef();
-    	// We set our body to dynamic, for something like ground which doesnt move we would set it to StaticBody
+    	// We set our body to dynamic, for something like ground which does not move we would set it to StaticBody
     	bodyDef.type = BodyType.DynamicBody;
     	// Set our body's starting position in the world
     	bodyDef.position.set(x, y);
@@ -46,13 +46,6 @@ public class Ship extends GameObject {
 		effect = new ParticleEffect();
 		effect.load(Gdx.files.internal("particle.p"), Gdx.files.internal(""));
 
-		/*
-		// Use box2d particles
-		ParticleEmitterBox2D boxPE = new ParticleEmitterBox2D(world, effect.getEmitters().get(0));
-		effect.getEmitters().clear();
-		effect.getEmitters().add(boxPE);
-		*/
-		
 		effect.setDuration(0);
 	}
 

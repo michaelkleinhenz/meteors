@@ -148,3 +148,20 @@ body {
   -o-transition: width 800ms cubic-bezier(.26, .86, .44, .985);
   transition: width 800ms cubic-bezier(.26, .86, .44, .985); }
 
+table {
+  margin-top: 2em !important;
+  width: 80%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+td {
+}
+
+.green {
+  color: #7BBD00;
+  }
+
+.centered{
+  text-align: center;
+}

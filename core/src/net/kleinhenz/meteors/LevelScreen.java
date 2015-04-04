@@ -26,10 +26,7 @@ public class LevelScreen extends GameScreen {
 	private static final float FORCE = 150000f * SCALEFACTOR_ALL;
 	
 	public static final float TILESIZE = WIDTH/9;
-	public static final float CONSTRAINTSIZE = TILESIZE/4;
-	public static final float DECKGAP = TILESIZE/4;
-	public static final float BOARDYMARGIN = 100f;
-	
+
 	private World world = null;
 	
 	private List<HUDElement> lifes = new ArrayList<HUDElement>();
@@ -71,10 +68,7 @@ public class LevelScreen extends GameScreen {
 	}
 
 	private boolean checkShip(Fixture fixture) {
-		if (ship.getBody()!=null && ship.getBody().equals(fixture.getBody()))
-			return true;
-		else
-			return false;
+		return ship.getBody() != null && ship.getBody().equals(fixture.getBody());
 	}
 
 	private void removeLife() {
@@ -91,12 +85,7 @@ public class LevelScreen extends GameScreen {
         // add background
         addBackground(new Background("starfield.png", 30, 1f, true, null));
         addBackground(new Background("whirl.png", 40, 1f, true, null));
-        addBackground(new Background("whirl2.png", 60, 1f, true, new ActorGestureListener() {
-			@Override
-			public void tap(InputEvent event, float x, float y, int count, int button) {
-				ship.boost(0.5f, 1f, FORCE, false, true);
-		}
-        }));
+        addBackground(new Background("whirl2.png", 60, 1f, true, null));
         
         createWall(0f, 0f, 0f, HEIGHT);
         createWall(0f, 0f, WIDTH, 0f);
@@ -126,8 +115,8 @@ public class LevelScreen extends GameScreen {
 		meteors.add(meteor3);
 				
 		// add HUD
-		for (int i=0; i<5; i++) {
-			HUDElement life = new HUDElement(50+i*50, 50, new Texture(Gdx.files.internal("heart.png")));
+		for (int i=1; i<6; i++) {
+			HUDElement life = new HUDElement(i*50, 50, new Texture(Gdx.files.internal("heart.png")));
 			lifes.add(life);
 			getStage().addActor(life);			
 		}
@@ -151,32 +140,10 @@ public class LevelScreen extends GameScreen {
 			public void beginContact(Contact contact) {
 				if ((checkMeteors(contact.getFixtureA()) && checkShip(contact.getFixtureB())) || 
 						(checkMeteors(contact.getFixtureB()) && checkShip(contact.getFixtureA()))) {
-					System.out.println("COLLISION");
+					Gdx.app.log("meteors", "Collision");
 					removeLife();					
 				}
 			}
 		});
-	}
-
-	public void updatePlayerInput(int player, float lS_X, float lS_Y,
-			float rS_X, float rS_Y, float l2, float r2) {
-
-		System.out.println("LX: " + lS_X + " LY: " + lS_Y);
-		System.out.println("RX: " + rS_X + " RY: " + rS_Y);
-
-		if(lS_X<-0.25) {
-    		ship.boost(1f, 0f, -FORCE/300, true, false);
-    		ship.boost(0f, 1f, FORCE/300, true, false);
-    	}
-    	if(lS_X>0.25) {
-    		ship.boost(0f, 0f, -FORCE/300, true, false);
-    		ship.boost(1f, 1f, FORCE/300, true, false);	
-    	}
-    	if(rS_Y<-0.25) {
-    		ship.boost(0.5f, 1f, FORCE, false, true);
-    	}
-    	if(rS_Y>0.25) {
-    		ship.boost(0.5f, 0f, -FORCE, false, false);
-    	}
 	}
 }

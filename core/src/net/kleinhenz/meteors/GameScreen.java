@@ -27,7 +27,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 /**
  * This class provides a basic framework for board game screens.
@@ -43,15 +43,16 @@ public abstract class GameScreen implements Screen {
 
 	public GameScreen() {
 		super();
-        stage = new Stage(new FitViewport(WIDTH, HEIGHT));
+
+		OrthographicCamera cam = new OrthographicCamera(WIDTH, HEIGHT);
+		stage = new Stage(new StretchViewport(WIDTH, HEIGHT, cam));
 	}
 	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-	    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		stage.getViewport().getCamera().update();
-        stage.act(Gdx.graphics.getDeltaTime());
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+		stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 	}
 
@@ -66,18 +67,12 @@ public abstract class GameScreen implements Screen {
 	
 	@Override
 	public void show() {
-        Gdx.input.setInputProcessor(stage);
-
-		OrthographicCamera cam = new OrthographicCamera(WIDTH, HEIGHT);
-        cam.position.set(WIDTH / 2, HEIGHT / 2, 0);
-		cam.update();
-		stage.getViewport().setCamera(cam);
-		stage.getBatch().setProjectionMatrix(cam.combined);
+		Gdx.input.setInputProcessor(stage);
     }
 
 	@Override
 	public void resize(int width, int height) {
-		// NOP
+		stage.getViewport().update(width, height, true);
 	}
 
 	@Override

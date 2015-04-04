@@ -36,11 +36,11 @@
 					<h1>libGDX</h1>
 					<h3>Game development kickoff workshop</h3>
 					<p>
-						<img src="../meteors-android/assets/data/ship.png" style="border:none;background:transparent">
+						<img src="../android/assets/ship.png" style="border:none;background:transparent">
 					</p>
 					<p style="margin-top: 3cm;">
 						<img src="images/logo.png" style="width:20%;border:none;background:transparent" align="left">
-					<div align="right">Michael Kleinhenz<br>Christoph Jerolimov</div>
+					<div align="right">Michael Kleinhenz</div>
 					</p>
 				</section>
 
@@ -53,21 +53,7 @@
 					</ul>
 					<h3 class="fragment" style="text-align: center;">Meteors - the unarmed spaceship</h3>
 				</section>
-				
-				<section>
-					<h2>Who are you?</h2>
-					<h3 style="text-align: left; margin-top: 2em;">Michael Kleinhenz</h3>
-					<p style="text-align: left;">
-						Co-founder of Questor, a startup specializing in gamification solutions.<br/>
-						Proudly from Berlin
-					</p>
-					<h3 style="text-align: left; margin-top: 2em;">Christoph Jerolimov</h3>
-					<p style="text-align: left;">
-					Freelancing developer for different mobile platforms.<br/>
-						Proudly from Cologne
-					</p>
-				</section>
-				
+
 				<section>
 					<h2>Heads Up</h2>
 					<p>
@@ -84,33 +70,33 @@
 					1. Install the Java JDK with your package manager or [download it](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 					2. You need a Java IDE, for example the [Android SDK](http://developer.android.com/sdk/index.html)
 					   * which includes the Android Developer Tools
-					   * and a preconfigured [Eclipse SDK](http://www.eclipse.org/downloads/)
-					3. [libGDX](http://libgdx.badlogicgames.com/download.html) (includes compatible Box2D)
+					   * and Android Studio, a IntelliJ-based IDE
+					3. [libGDX Setup App](http://libgdx.badlogicgames.com/download.html)
 					4. Box2D [Physics Body Editor](https://code.google.com/p/box2d-editor/)
-					5. Our [demo sprites](https://www.dropbox.com/sh/0xgnvbgo9ezmowm/3L3qPDbYjk)
-					
-					--
-					
-					All available here: http://bit.ly/meteors-downloads
+					5. Our [demo sprites](https://dl.dropboxusercontent.com/u/13325577/meteor-assets.zip)
 
-					Sourcecode: http://bit.ly/meteors-code
+					### Sourcecode
+					https://github.com/michaelkleinhenz/meteors
 				</section>
 
 				<section data-markdown>
 					## Prepare the Android platform
 
-					* Extract the android SDK
-					* Start eclipse and open the Android SDK manager
-					* Select Android 4.0.3 (API 15) -> SDK Platform, optional more
+					* Extract the android SDK & Android Studio
+					* Start Android Studio and open the Android SDK manager
+					* Select suitable Android release and extra packages
 					* Install the package(s)
 				</section>
 				
 				<section data-markdown>
 					## Prepare libGDX
 
-					* Extract the libgdx and physics-body-editor :-)
-					* Test if libgdx/gdx-setup-ui.jar works
-					* Test if physics-body-editor/physics-body-editor.jar works
+					* Start the Setup App
+					* Create the template project
+					* Test if physics-body-editor.jar works
+				</section>
+
+				<section style="background-image: url(images/general-project-setup1.png); background-size: 75%;">
 				</section>
 
 				<section>
@@ -120,23 +106,39 @@
 						<li>
 							Crossplattform game development framework
 							<ul>
-								<li class="fragment">Java SE (Linux, OSX, Windows)</li>
-							<li class="fragment">
-								Android and dependent systems like
-								<a href="http://www.google.com/tv/" target="_blank">Google TV</a> and
-								<a href="http://www.ouya.tv/" target="_blank">OUYA</a>.</li>
+								<li class="fragment">Desktop: Java SE (Linux, OS X, Windows, <b>Steam</b>)</b></li>
+								<li class="fragment">
+									Android-based systems like
+									<a href="http://www.google.com/android/" target="_blank">Android Phones & Tablets</a>,
+									<a href="http://www.google.com/tv/" target="_blank">Android TV</a>,
+									<a href="http://www.ouya.tv/" target="_blank">OUYA</a> and
+									<a href="http://www.amazon.de/Amazon-CL1130-Fire-TV/dp/B00KQEIMY6" target="_blank">Amazon Fire TV</a></li>
 								<li class="fragment">iOS</li>
-							<li class="fragment">Web</li>
+								<li class="fragment">Web (HTML5)</li>
 							</ul>
 						</li>
 						<li class="fragment">Write once, <strike>run everywhere</strike> compile for each platform</li>
 					</ul>
 				</section>
 
+				<section>
+					<h2>The Difference between libGDX and Unreal Engine/Havoc/Unity3D etc</h2>
+					<table>
+						<tr class="fragment"><td class="green centered" width="50%">libGDX</td><td class="green centered" width="50%">Unreal/Havoc/Unity3D</td></tr>
+						<tr class="fragment"><td>2D only</td><td>2D & 3D, with emphasis on 3D</td></tr>
+						<tr class="fragment"><td>OpenGL</td><td>OpenGL and DirectX</td></tr>
+						<tr class="fragment"><td>Desktop, Android, iOS</td><td>Desktop, Consoles, (Android, iOS)</td></tr>
+						<tr class="fragment"><td>Java-based</td><td>Based on proprietary scripting languages or Python/LUA</td></tr>
+						<tr class="fragment"><td>API, basic tooling</td><td>Editor-based</td></tr>
+						<tr class="fragment"><td>Easy to use for Java developers</td><td>Steep learning curve, proprietary systems</td></tr>
+						<tr class="fragment"><td>Apache License</td><td>Proprietary</td></tr>
+					</table>
+				</section>
+
 				<section style="background-image: url(images/general-gameloop.png); background-size: 100%;">
 					<h2>A simple game loop</h2>
 					<p class="fragment">Runs 60 times per second</p>
-					<p class="fragment">Optimization: Do not run KI in each loop</p>
+					<p class="fragment">Optimization: Do not run AI in each loop</p>
 				</section>
 
 				<section>
@@ -144,20 +146,24 @@
 					
 					<ul>
 						<li>
-							Crossplattform?
+							Crossplattform features:
 							<ul>
 								<li class="fragment">
-									Graphics (Direct OpenGL ES 1.x and 2.0)
+									Graphics (Direct OpenGL ES 2.0)
 									<ul class="fragment">
 										<li>Meshes, textures, shaders, ...</li>
-										<li>fonts, particles</li>
+										<li>Particle system</li>
 										<li>2D scene-graph and UI library</li>
-										<li>(3D in progress)</li>
+										<li>(Basic 3D support)</li>
 									</ul>
 								</li>
+								<li class="fragment">Physics (Box2D, Box2D-lightning)</li>
+								<li class="fragment">Aspect entity framework (Ashley)</li>
+								<li class="fragment">AI framework (Steering Behaviors, Formation Motion, Pathfinding, Behavior Trees and Finite State Machines)</li>
+								<li class="fragment">Input: Keyboard, Mouse, Controllers</li>
 								<li class="fragment">Audio output</li>
-								<li class="fragment">Different input types</li>
-								<li class="fragment">File IO</li>
+								<li class="fragment">File IO, Fonts and Utilities</li>
+								<li class="fragment">Integrations for Game Services, IAP, Ads, ...</li>
 							</ul>
 						</li>
 					</ul>
@@ -165,12 +171,12 @@
 				
 				<section style="background-image: url(images/libgdx-game-screen.png); background-size: 100%;">
 					<h2>libGDX framework</h2>
-					<h4>1 game : n screens</h4>
+					<h4>one game : n screens</h4>
 				</section>
 				
 				<section style="background-image: url(images/libgdx-screen-stage-actors.png); background-size: 100%;">
 					<h2>libGDX framework</h2>
-					<h4>1 screen : 1 stage : n actors</h4>
+					<h4>one screen : one stage : n actors</h4>
 				</section>
 
 				<section data-markdown>
@@ -214,12 +220,6 @@
 					<h2>Box2D API overview</h2>
 				</section>
 				
-				<section style="background-image: url(images/general-project-setup1.png); background-size: 75%;">
-					<h3>Project setup with gdx-setup-ui.jar</h3>
-				</section>
-				<section style="background-image: url(images/general-project-setup2.png); background-size: 75%;">
-					<h3>Project setup with gdx-setup-ui.jar</h3>
-				</section>
 			</div>
 
 		</div>

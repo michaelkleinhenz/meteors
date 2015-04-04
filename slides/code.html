@@ -36,11 +36,11 @@
 					<h1>Meteors</h1>
 					<h3>A simple starting point game</h3>
 					<p>
-					    <img src="../meteors-android/assets/data/ship.png" style="border:none;background:transparent">
+					    <img src="../android/assets/ship.png" style="border:none;background:transparent">
 					</p>
 					<p style="margin-top: 3cm;">
 						<img src="images/logo.png" style="width:20%;border:none;background:transparent" align="left">
-						<div align="right">Michael Kleinhenz<br>Christoph Jerolimov</div>
+						<div align="right">Michael Kleinhenz</div>
 					</p>
 				</section>
 
@@ -80,30 +80,33 @@
 
 				</section>
 
-				<section data-markdown>
-					### A Screen and a Stage
+				<section data-markdown style="font-size: 0.9em !important;">
+					### A Viewport, a Camera and a Stage
 
 						public abstract class GameScreen implements Screen {
 
 							public GameScreen() {
 								super();
-								stage = new Stage(WIDTH, HEIGHT, true);
+								OrthographicCamera cam =
+									new OrthographicCamera(WIDTH, HEIGHT);
+								stage =
+									new Stage(new StretchViewport(WIDTH, HEIGHT, cam));
 							}
 							...
 					</section>
 
 				<section data-markdown>
-					### Adding Camera and Render Loop
+					### Input and the Render Loop
 
+						@Override
 						public void show() {
-							OrthographicCamera cam =
-								new OrthographicCamera(WIDTH, HEIGHT);
-							cam.position.set(WIDTH / 2, HEIGHT / 2, 0);
-							stage.setCamera(cam);
+							Gdx.input.setInputProcessor(stage);
 						}
 
+						@Override
 						public void render(float delta) {
-							stage.act(delta);
+							Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+							stage.act(Gdx.graphics.getDeltaTime());
 							stage.draw();
 						}
 				</section>
@@ -153,7 +156,7 @@
 					### Making Actors render
 
 						@Override
-						public void draw(SpriteBatch batch,
+						public void draw(Batch batch,
 									float parentAlpha) {
 
 							batch.draw(textureRegion, getX(), getY(),
@@ -187,20 +190,6 @@
 							}
 							...
 						}
-				</section>
-
-				<section data-markdown>
-					### Adding (Touch) Controls
-
-						setTouchable(Touchable.enabled);
-
-						addListener(new ActorGestureListener() {
-							@Override
-							public void tap(InputEvent event, float x, float y,
-									int count, int button) {
-								...
-							}
-						});
 				</section>
 
 				<section data-markdown>
@@ -292,7 +281,7 @@
 				<section>
 					<h1>Now it's your turn!</h1>
 					<p>&nbsp;</p>
-					<h3>https://bitbucket.org/kleinhenz/meteors</h3>
+					<h3>https://github.com/michaelkleinhenz/meteors</h3>
 					<img src="images/logo.png" style="width:50%;margin-top:20%;border:none;background:transparent">
 					<br>www.goquestor.com
 				</section>
